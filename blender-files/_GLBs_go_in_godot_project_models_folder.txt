@@ -1,0 +1,1 @@
+Please place exported GLB blender files in godot project/models folder, not here

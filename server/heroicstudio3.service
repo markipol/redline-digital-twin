@@ -1,0 +1,15 @@
+[Unit]
+Description=Gunicorn for Heroic Studio 3 Flask App
+After=network.target
+
+[Service]
+User=mark
+Group=mark
+WorkingDirectory=/home/mark/dih-digital-twin/server
+Environment="PATH=/home/mark/redline-venv/bin"
+ExecStart=/home/mark/redline-venv/bin/gunicorn -w 3 -b 127.0.0.1:8000 wsgi:app
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

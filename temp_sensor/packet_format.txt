@@ -1,0 +1,18 @@
+# Host to device packets
+# Packets sent and received are HID Data
+# Handshake packets not necessary to be read
+# They are only for the TEMPer program to manually
+# Discover the device version and 
+# Other unknown setup functions
+
+# Handshake packets
+# Packet 1: 0186ff0100000000
+# Packet 1 reply: ASCII of "TEMPerGold_V3.5 " (16 bytes)
+# Packet 2: 0187ee0000000000
+# Packet 2 reply: 87 80 (function unknown)
+# Packet 3: 0182770100000000
+# Packet 3 reply: 82 04 (function unknown)
+
+# Data query and reply packets
+# Query packet: 0180330100000000
+# Query reply: 8080XXXX4E200000 (XXXX is the 4 bytes of temperature)

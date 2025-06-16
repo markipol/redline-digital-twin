@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# rsrv.sh — restarts and checks status of heroicstudio3.service
+
+sudo systemctl restart heroicstudio3.service && sudo systemctl status --no-pager heroicstudio3.service

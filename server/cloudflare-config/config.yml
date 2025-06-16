@@ -1,0 +1,7 @@
+tunnel: heroicstudio3
+credentials-file: /home/mark/.cloudflared/<tunnel-id-goes-here>.json
+
+ingress:
+  - hostname: findio.me
+    service: http://localhost:80
+  - service: http_status:404

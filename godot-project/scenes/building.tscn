@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://bloshb4k56lba"]
+
+[ext_resource type="Script" uid="uid://cuqxuqan58sgk" path="res://scripts/building.gd" id="1_f5uvq"]
+[ext_resource type="PackedScene" uid="uid://cytflxv27s7gr" path="res://models/rest of building.glb" id="1_n8bkc"]
+[ext_resource type="PackedScene" uid="uid://du7ulswrgahyi" path="res://models/floor 1.glb" id="2_lm2ef"]
+[ext_resource type="PackedScene" uid="uid://d0txex63ex6aq" path="res://models/floor 2.glb" id="3_f5uvq"]
+[ext_resource type="PackedScene" uid="uid://b0wt1xbo3u88x" path="res://models/floor 3.glb" id="4_gof7m"]
+[ext_resource type="PackedScene" uid="uid://c8wbnu32fd4t1" path="res://models/floor 4.glb" id="5_g3pb6"]
+
+[node name="building" type="Node3D"]
+script = ExtResource("1_f5uvq")
+
+[node name="rest of building" parent="." instance=ExtResource("1_n8bkc")]
+
+[node name="floors" type="Node3D" parent="."]
+
+[node name="floor 1" parent="floors" instance=ExtResource("2_lm2ef")]
+
+[node name="floor 2" parent="floors" instance=ExtResource("3_f5uvq")]
+
+[node name="floor 3" parent="floors" instance=ExtResource("4_gof7m")]
+
+[node name="floor 4" parent="floors" instance=ExtResource("5_g3pb6")]
+
+[editable path="rest of building"]
+[editable path="floors/floor 1"]
+[editable path="floors/floor 2"]
+[editable path="floors/floor 3"]
+[editable path="floors/floor 4"]

@@ -1,0 +1,488 @@
+[gd_scene load_steps=31 format=3 uid="uid://83rn7cwqlqfe"]
+
+[ext_resource type="Script" uid="uid://cenq5mvysr1yt" path="res://scripts/hide_show_list.gd" id="3_bq7xt"]
+[ext_resource type="Script" uid="uid://b752yhrqrcdvp" path="res://scripts/new_char_controller.gd" id="4_8tbvg"]
+[ext_resource type="PackedScene" uid="uid://cfgvasoaojlyo" path="res://models/purple_arrow.glb" id="4_trceg"]
+[ext_resource type="Material" uid="uid://c4p85571a60hu" path="res://materials/red.tres" id="5_084pl"]
+[ext_resource type="Material" uid="uid://dkcyqdnc1u5in" path="res://materials/blue.tres" id="6_bud82"]
+[ext_resource type="Script" uid="uid://buroeb36c4hhu" path="res://scripts/crosshair.gd" id="6_v4ygi"]
+[ext_resource type="Texture2D" uid="uid://s4yhilve7ob" path="res://textures/crosshair.png" id="7_gi20m"]
+[ext_resource type="ButtonGroup" uid="uid://b3xwkchp1jr2h" path="res://resources/show_hide.tres" id="7_ya4ey"]
+[ext_resource type="Script" uid="uid://c55ci18ndgm6" path="res://scripts/movement_selector.gd" id="8_jscy8"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="10_choun"]
+[ext_resource type="PackedScene" uid="uid://bloshb4k56lba" path="res://scenes/building.tscn" id="10_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://bnsja1x6khuhf" path="res://textures/arrow.png" id="11_ya4ey"]
+[ext_resource type="Script" uid="uid://h06ygg5flcb2" path="res://scripts/custom_chart.gd" id="12_0ld40"]
+[ext_resource type="Script" uid="uid://bhtianfxncxcb" path="res://scripts/arrow.gd" id="12_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://cggqb75a8w8r" path="res://addons/debug_menu/debug_menu.tscn" id="12_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://d1jc2665ggfyl" path="res://textures/x-letter-icon-256x256-w5arni31.png" id="13_0ld40"]
+[ext_resource type="StyleBox" uid="uid://bjwd343378igc" path="res://resources/label_bg.tres" id="13_dp3eg"]
+[ext_resource type="Texture2D" uid="uid://bjvhxuu6yaaer" path="res://textures/arrow_disabled.png" id="15_0ld40"]
+[ext_resource type="Script" uid="uid://y023qdj6gfm8" path="res://scripts/tests.gd" id="15_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://ctqdsa76mgvs4" path="res://textures/help.png" id="16_gqmmt"]
+[ext_resource type="Script" uid="uid://dgp3812vp1e6h" path="res://scripts/env_loader.gd" id="16_jbj1t"]
+[ext_resource type="Script" uid="uid://dxf788u3b8any" path="res://scripts/help_panel.gd" id="17_yc10j"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c8rnh"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_6hvyk"]
+sky_material = SubResource("ProceduralSkyMaterial_c8rnh")
+
+[sub_resource type="Environment" id="Environment_7kg5f"]
+background_mode = 2
+sky = SubResource("Sky_6hvyk")
+tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a0ah4"]
+size = Vector3(259.649, 1, 259.243)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h20rw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dr65"]
+bg_color = Color(0.2484, 0.2484, 0.2484, 0.772549)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_rbicc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqmmt"]
+bg_color = Color(0.147672, 0.147672, 0.147672, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7kg5f")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.167595, 4.30931e-08, -0.985856, 0.985856, -7.3258e-09, 0.167595, 0, -1, -4.37114e-08, 0, 24.7264, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.201, -1.25, -5.345)
+shape = SubResource("BoxShape3D_a0ah4")
+
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("CUSTOM_CHART", "DATA_LABEL", "HEIGHT_LOCK_BUTTON", "MOVE_MODE_SEL", "HELP_PANEL", "DEBUG_MENU", "ON_SCREEN_CONTROLS", "CROSSHAIR")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 6.37754, 39.257, 1.23784)
+collision_mask = 0
+script = ExtResource("4_8tbvg")
+CUSTOM_CHART = NodePath("../UI/CustomChart")
+DATA_LABEL = NodePath("../UI/InfoBox/VBoxContainer/MarginContainer/Data")
+HEIGHT_LOCK_BUTTON = NodePath("../UI/InfoBox/VBoxContainer/FloorsBox/Height Lock/CheckButton")
+MOVE_MODE_SEL = NodePath("../UI/InfoBox/VBoxContainer/FloorsBox/MovementMode/Selector")
+HELP_PANEL = NodePath("../UI/HelpPanel")
+RED = ExtResource("5_084pl")
+BLUE = ExtResource("6_bud82")
+DEBUG_MENU = NodePath("../CanvasLayer")
+ON_SCREEN_CONTROLS = NodePath("../UI/OnScreenControls")
+CROSSHAIR = NodePath("../Crosshair")
+collision_state = false
+
+[node name="purple_arrow" parent="Player" instance=ExtResource("4_trceg")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("BoxShape3D_h20rw")
+
+[node name="Crosshair" type="Sprite2D" parent="."]
+texture = ExtResource("7_gi20m")
+script = ExtResource("6_v4ygi")
+
+[node name="UI" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="InfoBox" type="PanelContainer" parent="UI" node_paths=PackedStringArray("building", "player")]
+offset_right = 106.0
+offset_bottom = 58.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6dr65")
+script = ExtResource("3_bq7xt")
+building = NodePath("../../building")
+player = NodePath("../../Player")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/InfoBox"]
+layout_mode = 2
+theme = SubResource("Theme_rbicc")
+
+[node name="FloorsBox" type="VBoxContainer" parent="UI/InfoBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="MovementMode" type="HBoxContainer" parent="UI/InfoBox/VBoxContainer/FloorsBox"]
+layout_mode = 2
+
+[node name="Selector" type="OptionButton" parent="UI/InfoBox/VBoxContainer/FloorsBox/MovementMode"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Mouse dragging map mode"
+popup/item_0/id = 0
+popup/item_1/text = "Keyboard + Mouse FPS Controls"
+popup/item_1/id = 1
+popup/item_2/text = "Virtual Joystick Controls"
+popup/item_2/id = 2
+script = ExtResource("8_jscy8")
+
+[node name="Height Lock" type="HBoxContainer" parent="UI/InfoBox/VBoxContainer/FloorsBox"]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="UI/InfoBox/VBoxContainer/FloorsBox/Height Lock"]
+layout_mode = 2
+focus_mode = 0
+text = "Height Lock"
+
+[node name="floor 1" type="HBoxContainer" parent="UI/InfoBox/VBoxContainer/FloorsBox"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="UI/InfoBox/VBoxContainer/FloorsBox/floor 1"]
+layout_mode = 2
+focus_mode = 0
+button_group = ExtResource("7_ya4ey")
+text = "Floor 1"
+
+[node name="floor 2" type="HBoxContainer" parent="UI/InfoBox/VBoxContainer/FloorsBox"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="UI/InfoBox/VBoxContainer/FloorsBox/floor 2"]
+layout_mode = 2
+focus_mode = 0
+button_pressed = true
+button_group = ExtResource("7_ya4ey")
+text = "Floor 2"
+
+[node name="floor 3" type="HBoxContainer" parent="UI/InfoBox/VBoxContainer/FloorsBox"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="UI/InfoBox/VBoxContainer/FloorsBox/floor 3"]
+layout_mode = 2
+focus_mode = 0
+button_group = ExtResource("7_ya4ey")
+text = "Floor 3"
+
+[node name="floor 4" type="HBoxContainer" parent="UI/InfoBox/VBoxContainer/FloorsBox"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="UI/InfoBox/VBoxContainer/FloorsBox/floor 4"]
+layout_mode = 2
+focus_mode = 0
+button_group = ExtResource("7_ya4ey")
+text = "Floor 4"
+
+[node name="Rest of building" type="HBoxContainer" parent="UI/InfoBox/VBoxContainer/FloorsBox"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="UI/InfoBox/VBoxContainer/FloorsBox/Rest of building"]
+layout_mode = 2
+focus_mode = 0
+button_group = ExtResource("7_ya4ey")
+text = "Entire building"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/InfoBox/VBoxContainer/FloorsBox/Rest of building"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Label" type="Label" parent="UI/InfoBox/VBoxContainer/FloorsBox/Rest of building/MarginContainer"]
+layout_mode = 2
+text = "Entire building"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/InfoBox/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Data" type="Label" parent="UI/InfoBox/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="OnScreenControls" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 398.0
+offset_top = 281.4
+offset_right = 438.0
+offset_bottom = 321.4
+
+[node name="right_vj" parent="UI/OnScreenControls" instance=ExtResource("10_choun")]
+layout_mode = 1
+offset_top = 300.0
+offset_bottom = 600.0
+use_input_actions = false
+
+[node name="left_vj" parent="UI/OnScreenControls" instance=ExtResource("10_choun")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 812.0
+offset_top = 308.0
+offset_right = 1112.0
+offset_bottom = 608.0
+grow_horizontal = 0
+use_input_actions = false
+
+[node name="up_button" type="TextureButton" parent="UI/OnScreenControls"]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 248.0
+offset_right = 716.0
+offset_bottom = 504.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("11_ya4ey")
+script = ExtResource("12_a8y0u")
+
+[node name="Up" type="Label" parent="UI/OnScreenControls/up_button"]
+layout_mode = 0
+offset_left = 110.667
+offset_top = 182.133
+offset_right = 150.667
+offset_bottom = 216.133
+theme_override_font_sizes/font_size = 24
+text = "Up"
+
+[node name="down_button" type="TextureButton" parent="UI/OnScreenControls"]
+layout_mode = 0
+offset_left = 652.0
+offset_top = 684.0
+offset_right = 908.0
+offset_bottom = 940.0
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("11_ya4ey")
+script = ExtResource("12_a8y0u")
+
+[node name="Down" type="Label" parent="UI/OnScreenControls/down_button"]
+layout_mode = 0
+offset_left = 159.999
+offset_top = 223.2
+offset_right = 223.999
+offset_bottom = 255.2
+rotation = -3.14159
+theme_override_font_sizes/font_size = 23
+text = "Down"
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CustomChart" type="Control" parent="UI" node_paths=PackedStringArray("label", "env_loader", "error_dialog")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 56.0
+offset_top = 369.0
+offset_right = 692.0
+offset_bottom = 703.0
+script = ExtResource("12_0ld40")
+label = NodePath("../InfoBox/VBoxContainer/MarginContainer/Data")
+env_loader = NodePath("../../EnvLoader")
+error_dialog = NodePath("../../ErrorDialog")
+
+[node name="Date" type="Label" parent="UI/CustomChart"]
+layout_mode = 2
+offset_left = 269.0
+offset_top = 14.0
+offset_right = 434.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("13_dp3eg")
+text = "05/06/25"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Room" type="Label" parent="UI/CustomChart"]
+layout_mode = 2
+offset_left = 129.0
+offset_top = 14.0
+offset_right = 249.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("13_dp3eg")
+text = "101A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/CustomChart"]
+layout_mode = 0
+offset_left = 263.0
+offset_right = 331.0
+offset_bottom = 40.47
+
+[node name="HTTPRequest" type="HTTPRequest" parent="UI/CustomChart"]
+
+[node name="CloseButton" type="Button" parent="UI/CustomChart"]
+layout_mode = 0
+offset_left = 569.0
+offset_top = 4.0
+offset_right = 833.0
+offset_bottom = 268.0
+scale = Vector2(0.21552, 0.21552)
+icon = ExtResource("13_0ld40")
+icon_alignment = 1
+
+[node name="left_arrow" type="TextureButton" parent="UI/CustomChart"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 64.0
+offset_right = 278.0
+offset_bottom = 320.0
+rotation = 4.71239
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("11_ya4ey")
+texture_disabled = ExtResource("15_0ld40")
+script = ExtResource("12_a8y0u")
+
+[node name="right_arrow" type="TextureButton" parent="UI/CustomChart"]
+layout_mode = 0
+offset_left = 585.0
+offset_right = 841.0
+offset_bottom = 256.0
+rotation = -4.71239
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("11_ya4ey")
+texture_disabled = ExtResource("15_0ld40")
+script = ExtResource("12_a8y0u")
+
+[node name="Error" type="Label" parent="UI/CustomChart"]
+visible = false
+layout_mode = 0
+offset_top = 175.0
+offset_right = 636.0
+offset_bottom = 198.0
+theme_override_styles/normal = ExtResource("13_dp3eg")
+text = "Error displayed here"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpButton" type="Button" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -108.0
+offset_bottom = 108.0
+grow_horizontal = 0
+icon = ExtResource("16_gqmmt")
+
+[node name="HelpPanel" type="Panel" parent="UI" node_paths=PackedStringArray("help_button")]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 414.0
+offset_top = 144.0
+offset_right = -506.0
+offset_bottom = -127.725
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gqmmt")
+script = ExtResource("17_yc10j")
+help_button = NodePath("../HelpButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HelpPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 9
+
+[node name="Control" type="Control" parent="UI/HelpPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Instructions" type="Label" parent="UI/HelpPanel/VBoxContainer"]
+layout_mode = 2
+text = "Welcome to Redline! 
+To change movement modes, go to the selector at the top left, or press \"m\" to cycle modes. The available modes are:
+- Mouse dragging mode. As in Google Maps. Zoom in and out with the mouse wheel.
+- WASD and Mouse mode. As in first person video games. Shift to go down, Spacebar to go up, Ctrl to go faster.
+- Virtual Joystick mode. Same mode as used in first person mobile games. Use on screen arrows to go up/down.
+ (press \"j\" to hide the joysticks in this mode).
+
+In WASD and Virtual Joystick modes, there is a Height Lock toggle (top left, or press Tab).
+When enabled, you can only move vertically using Shift/Space or the on-screen arrows.
+Useful for navigating above a floor level as if on an invisible surface.
+
+When you click an info point, the program will send a request for the data from the latest day data is available. 
+It will then display a chart of the data from that day, 12am-12am. 
+From that day, you can then go backward or forward days using the arrows in the chart. 
+
+The floor selector is at the top left, only one floor can be selected at a time, or you
+can show the entire building, for viewing the exterior.
+Floor 1 is composed of example randomly generated placeholder data, 
+however floor 2 (Digital Innovation Hub) is real data collected from Raspberry Pi sensors.
+
+Press F1 or the help button top right to see these instructions again.
+Enjoy exploring the Digital Twin!"
+horizontal_alignment = 1
+
+[node name="OK" type="Button" parent="UI/HelpPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "OK"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HelpPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HelpPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="building" parent="." instance=ExtResource("10_ya4ey")]
+
+[node name="rest of building" parent="building" index="0"]
+visible = false
+
+[node name="floor 1" parent="building/floors" index="0"]
+visible = false
+
+[node name="floor 3" parent="building/floors" index="2"]
+visible = false
+
+[node name="floor 4" parent="building/floors" index="3"]
+visible = false
+
+[node name="CanvasLayer" parent="." instance=ExtResource("12_eb6dy")]
+
+[node name="DebugMenu" parent="CanvasLayer" index="0"]
+offset_top = 129.0
+offset_bottom = 529.0
+
+[node name="Tests" type="Node3D" parent="." node_paths=PackedStringArray("player", "infobox", "customchart", "env_loader", "error_dialog")]
+script = ExtResource("15_jkv2x")
+player = NodePath("../Player")
+infobox = NodePath("../UI/InfoBox")
+customchart = NodePath("../UI/CustomChart")
+env_loader = NodePath("../EnvLoader")
+error_dialog = NodePath("../ErrorDialog")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Tests"]
+
+[node name="EnvLoader" type="Node3D" parent="."]
+script = ExtResource("16_jbj1t")
+
+[node name="ErrorDialog" type="AcceptDialog" parent="."]
+
+[connection signal="item_selected" from="UI/InfoBox/VBoxContainer/FloorsBox/MovementMode/Selector" to="UI/InfoBox" method="_on_selector_item_selected"]
+[connection signal="request_completed" from="UI/CustomChart/HTTPRequest" to="UI/CustomChart" method="_on_http_request_completed"]
+[connection signal="pressed" from="UI/CustomChart/CloseButton" to="UI/CustomChart" method="_on_close_button_pressed"]
+[connection signal="pressed" from="UI/CustomChart/left_arrow" to="UI/CustomChart" method="_on_left_arrow_pressed"]
+[connection signal="pressed" from="UI/CustomChart/right_arrow" to="UI/CustomChart" method="_on_right_arrow_pressed"]
+[connection signal="pressed" from="UI/HelpButton" to="UI/HelpPanel" method="_on_help_button_pressed"]
+[connection signal="pressed" from="UI/HelpPanel/VBoxContainer/OK" to="UI/HelpPanel" method="_on_ok_pressed"]
+
+[editable path="building"]
+[editable path="building/rest of building"]
+[editable path="building/floors/floor 1"]
+[editable path="building/floors/floor 2"]
+[editable path="building/floors/floor 3"]
+[editable path="building/floors/floor 4"]
+[editable path="CanvasLayer"]

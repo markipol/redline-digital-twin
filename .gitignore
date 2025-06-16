@@ -1,0 +1,36 @@
+godot project/asset_lib/debug_draw_3d-1.5.0/addons/debug_draw_3d/libs/~libdd3d.windows.editor.x86_64.dll
+/server/bin
+/server/lib
+/server/lib64
+/server/__pycache__
+/server/data.db
+/server/.env
+godot project/Digital Innovation Hub - Digital Twin.pck
+server/backups/*
+.env
+godot_project/Redline.console.exe
+godot_project/Redline.exe
+Redline.x86_64
+Redline.x86_64
+# Ignore any .env file anywhere
+**/.env
+
+# Ignore EXEs, they waste space. Put them in releases. Any pck thats still floating around is deleted as well
+**/*.exe
+**/*.pck
+**/*.x86_64
+**/*.db
+
+# Ignore blender backup files
+**/*.blend1
+**/*.blend2
+**/*.blend@
+**/*.blend~
+
+# Windows desktop.ini, ignore it anywhere
+**/desktop.ini
+**/Thumbs.db
+
+# Godot imported
+godot_project/.import/*
+godot_project/exes/releases/Redline_Linux_1.0.0.sh

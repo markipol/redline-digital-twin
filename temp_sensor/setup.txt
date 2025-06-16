@@ -1,0 +1,60 @@
+# 1. Create a folder for your project if you haven't already
+mkdir temper-reader
+cd temper-reader
+
+# 2. Create a virtual environment
+python3 -m venv temper
+
+# 3. Activate it
+source temper/bin/activate
+
+# You should now seethis in your terminal:
+
+(temper) pi@raspberrypi:~/temper-reader $
+
+# install hid (in the temper venv) other deps
+
+pip install hid requests dotenv
+
+# Let normal user access device so you don't need to use sudo, create file if doesnt exist
+
+sudo nano /etc/udev/rules.d/99-temper.rules
+
+# put these lines in (cover both situations as on my two pis, where one device is the root device one is a child)
+
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3553", ATTRS{idProduct}=="a001", MODE="0666", GROUP="plugdev"
+SUBSYSTEM=="hidraw", SUBSYSTEMS=="usb", ATTRS{idVendor}=="3553", ATTRS{idProduct}=="a001", MODE="0666", GROUP="plugdev"
+
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+# add your user to the plugdev GROUP
+
+sudo usermod -aG plugdev $USER
+
+# reboot the pi to apply change and 
+
+sudo reboot
+
+# the groups command should include plugdev
+
+groups
+
+# create .env file, as below
+
+touch .env
+nano .env
+
+# file should be
+
+WRITE_KEY = <write key goes here>
+
+
+# now activate the venv again and run the command to read the temperature
+
+source temper/bin/activate
+python3 read_temp.py
+
+# create a crontab, add this to the end of the file with crontab -e, for every hour temp uploading.
+
+crontab -e
+0 * * * * /home/mark/temper-env/bin/python /home/mark/upload_temp.py >> /home/mark/temp_log.txt 2>&1

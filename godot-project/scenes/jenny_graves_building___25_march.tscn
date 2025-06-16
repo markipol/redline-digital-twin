@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b607k5dekocy8"]
+
+[ext_resource type="PackedScene" uid="uid://brfqcmen4i6j" path="res://models/Jenny Graves Building - 25 March.glb" id="1_h2y00"]
+
+[node name="Jenny Graves Building - 25 March" instance=ExtResource("1_h2y00")]

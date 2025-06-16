@@ -1,0 +1,54 @@
+After disconnecting internet:
+
+✅ PASS - Player node exists
+✅ PASS - Infobox node exists
+✅ PASS - CustomChart node exists
+✅ PASS - EnvLoader node exists
+✅ PASS - Loaded READ_KEY
+Checking server health...
+Server unreachable or error code:0
+Trying fallback Google HEAD check...
+❌ FAIL - No internet connection, can't ping google.com. Data will not show
+Some tests failed, program may be unstable or not work.
+
+No .env file:
+
+No .env file found at: C:/git/dih-digital-twin/.env
+✅ PASS - Player node exists
+✅ PASS - Infobox node exists
+✅ PASS - CustomChart node exists
+✅ PASS - EnvLoader node exists
+❌ FAIL - READ_KEY load failed! Requests to server will fail
+Checking server health...
+Server unreachable, error code:0
+Trying fallback Google HEAD check...
+❌ FAIL - No internet connection, can't ping google.com. Data will not show
+Some tests failed, program may be unstable or not work.
+
+
+No .env file and server turned off:
+
+No .env file found at: C:/git/dih-digital-twin/.env
+✅ PASS - Player node exists
+✅ PASS - Infobox node exists
+✅ PASS - CustomChart node exists
+✅ PASS - EnvLoader node exists
+❌ FAIL - READ_KEY load failed! Requests to server will fail
+Checking server health...
+Server unreachable, error code:0
+Trying fallback Google HEAD check...
+❌ FAIL - Can't reach server, it is offline or the connection is blocked. Connected to internet, can ping google.com. Data will not show.
+Some tests failed, program may be unstable or not work.
+
+Read key incorrect:
+✅ PASS - Player node exists
+✅ PASS - Infobox node exists
+✅ PASS - CustomChart node exists
+✅ PASS - EnvLoader node exists
+✅ PASS - Loaded READ_KEY
+Checking server health...
+✅ Server reachable, now checking read access...
+❌ FAIL - Server reachable, but read key is incorrect. Data will not show
+Some tests failed, program may be unstable or not work.
+
+
