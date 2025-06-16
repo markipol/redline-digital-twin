@@ -1,5 +1,5 @@
-# Redline Temperature Map software
-Redline is an open source system which can help you monitor and display temperatures of rooms in a multi-floor building in a 3D environment. The project is currently in a working prototype state. The client uses the Godot game engine, and queries a Flask server behind Gunicorn and Nginx (and, in the included server install instructions, Cloudflare Tunnel, although that is optional) for temperatures of rooms. The system shows temperature data for a room on a graph when that rooms info point is clicked. The system can report real data from a Raspberry Pi temperature sensor.
+# Redline Temperature Map
+Redline is an open source system which can help you monitor and display temperatures of rooms in a multi-floor building in a 3D environment. The project is currently in a working prototype state. The client uses the Godot game engine, and queries a Flask server behind Gunicorn and Nginx (and, in the included server install instructions, Cloudflare Tunnel, although that is optional) for temperatures of rooms. The system shows temperature data for a room on a graph when that rooms info point is clicked. The system can report real data from a Raspberry Pi temperature sensor. Future data points could be added, however, for now, temperature is the only supported data point
 ## Development process
 The models, Godot client, server, and temperature sensor code were developed entirely solo by me (markipol) over 12 weeks, as my Capstone Project for the La Trobe University Bachelor of Cybersecurity. 
 ## Models
