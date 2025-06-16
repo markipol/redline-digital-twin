@@ -1,6 +1,13 @@
-# Redline Temperature Map software
-Redline is an open source system which can help you monitor and display temperatures of rooms in a multi-floor building in a 3D environment. The project is currently in a working prototype state. The client uses the Godot game engine, and queries a Flask server behind Gunicorn and Nginx (and, in the included server install instructions, Cloudflare Tunnel, although that is optional) for temperatures of rooms. The system shows temperature data for a room on a graph when that rooms info point is clicked. The system can report real data from a Raspberry Pi temperature sensor.
+# Redline Temperature Map
+Redline is an open source system which can help you monitor and display temperatures of rooms in a multi-floor building in a 3D environment. The project is currently in a working prototype state. The client uses the Godot game engine, and queries a Flask server behind Gunicorn and Nginx (and, in the included server install instructions, Cloudflare Tunnel, although that is optional) for temperatures of rooms. The system shows temperature data for a room on a graph when that rooms info point is clicked. The system can report real data from a Raspberry Pi temperature sensor. Future data points could be added, however, for now, temperature is the only supported data point
+## Development process
+The models, Godot client, server, and temperature sensor code were developed entirely solo by me (markipol) over 12 weeks, as my Capstone Project for the La Trobe University Bachelor of Cybersecurity. 
 ## Models
+
+<picture>
+  <img src="images/godot_building_model_structure.png" >
+</picture>
+
 The model included is of the Jenny Graves Building of the La Trobe University Bundoora campus, split into per floor models and an exterior model. Another model could be used of another building, if the same specific structure is followed. Here is the structure needed inside godot:
 ```
 building
@@ -12,7 +19,13 @@ building
     ├── floor 4
     └── ...etc (can have 1 or more floors, not only 4)
 ```
-"rest of building" and "floor X" are all models imported into Godot. "rest of building" does not need a defined structure, however, "floor X" files do. Here is how it should look inside Blender:
+
+"rest of building" and "floor X" are all models imported into Godot. "rest of building" does not need a defined structure, however, "floor X" files do. Here is how "floor X" should look inside Blender:
+
+<picture>
+  <img src="images/blender_floor_model_structure.png" >
+</picture>
+
 ```
 exterior
 └── exterior_colonly
@@ -46,6 +59,11 @@ Description of each mesh:
 ## Server
 The server is a Python Flask server. The installation instructions use Nginx and Gunicorn, which is a production-level way to do it, however for testing or development purposes you could use ```flask.run()``` (only one connection at a time, not a fully fledged http/s server, etc). The instructions also mention using Cloudflare Tunnel, however this was only used because La Trobe was blocking the untrusted Azure IP. But in fact, this is a good general security hygiene step as you never expose your real server IP, making it more DDoS resistant. Also, any random network with however many VPNs or filters will only ever connect to a trusted Cloudflare IP, making your connection less likely to be blocked. 
 ## Temperature sensor
-The temperature sensor I used for this project was a TEMPerGold ([amazon link here](https://www.amazon.com.au/dp/B0B6Q236MK?ref=ppx_yo2ov_dt_b_fed_asin_title), not affiliate, but the versions are very sensitive, only this model would work with the provided code) attached to a raspberry pi, however any source of data could be used as long as it can send packets to an API. Presumably, as long as you have a laptop/desktop (preferably linux for easy crontab hourly updating) with python and a task scheduler, it would work, however this has not been tested, it was only ever tested on a Raspberry Pi. 
-## Development process
-The models, Godot client, server, and temperature sensor code were developed entirely solo by me (markipol) over 12 weeks, as my Capstone Project for the La Trobe University Bachelor of Cybersecurity. 
+
+<picture>
+  <img src="images/TEMPerGold.jpg" alt="A TEMPerGold attached to a USB Extension cable" width="600">
+</picture>
+
+The temperature sensor I used for this project was a TEMPerGold attached to a raspberry pi, however any source of data could be used as long as it can send packets to an API. Presumably, as long as you have a laptop/desktop (preferably linux for easy crontab hourly updating) with python and a task scheduler, it would work, however this has not been tested, it was only ever tested on a Raspberry Pi. If using on a rasperry pi, please use on a USB Extender cable or Hub as in the photo, as the heat will make the readings higher than they really are due to the heat of the Pi (laptops depending how hot they get could have this same issue). 
+[Amazon link here](https://www.amazon.com.au/dp/B0B6Q236MK?ref=ppx_yo2ov_dt_b_fed_asin_title), not affiliate, but the versions are very sensitive, only this model would work with the provided code. It does not say TEMPer in the attached link, however, trust me, it is. You can see even the TEMPer branding removed poorly in the image on Amazon, presumably this is for legal or copyright reasons.
+
