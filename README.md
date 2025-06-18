@@ -53,7 +53,7 @@ Description of each mesh:
 - plan_col: simply the bottom surface of the floor, floor plan in the Jenny Graves Building case. Doesn't need seperate collision mesh because it is a simple plane, auto imports StaticBody3D and CollisionShape3D, imports visible mesh.
 
 - points: the parent object of "info points" which are 0.8m cubes the user clicks to show the graph.
-  - info points themselves: Must be named "<Room code> - <Room title>". Godot code splits based on spaces, as long as it has a room code then a space, it will work. The title is not implemented anywhere in and of itself.
+  - info points themselves: Must be named "RoomCode - RoomTitle". Godot code splits based on spaces, as long as it has a room code then a space, it will work. The title is not implemented anywhere in and of itself.
 
   Note: All these nodes must be named this way, the code works on the model having these names.
 ## Server
