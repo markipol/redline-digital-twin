@@ -1,7 +1,7 @@
 # 🌡️ TEMPerGold USB Thermometer Setup for Pi
 
 <picture>
-  <img src="images/TEMPerGold.jpg" alt="A TEMPerGold attached to a USB Extension cable" width="600">
+  <img src="/images/TEMPerGold.jpg" alt="A TEMPerGold attached to a USB Extension cable" width="600">
 </picture>
 
 Please note: if running on a Raspberry Pi, please use a USB Extender (as in the image) or USB Hub to make the heat of the Pi not artificially raise the temperature of the sensor. 
