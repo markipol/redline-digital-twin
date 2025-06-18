@@ -59,7 +59,7 @@ Description of each mesh:
 ## Server
 The server is a Python Flask server. The [installation instructions](server/README.md) use Nginx and Gunicorn, which is a production-level way to do it, however for testing or development purposes you could use ```flask.run()``` (only one connection at a time, not a fully fledged http/s server, etc). The instructions also mention using Cloudflare Tunnel, however this was only used because La Trobe was blocking the untrusted Azure IP. But in fact, this is a good general security hygiene step as you never expose your real server IP, making it more DDoS resistant. Also, any random network with however many VPNs or filters will only ever connect to a trusted Cloudflare IP, making your connection less likely to be blocked. 
 ## Client
-Please create a file called ".env" with your read key, as added to the server, and put it in the format "READ_KEY = <key>" in the same folder as the EXE, or the root folder if you are opening the project in the Godot editor. ".env" is already in .gitignore, please do not change this. 
+Please create a file called ".env" with your read key, as added to the server, and put it in the format "READ_KEY = (key)" in the same folder as the EXE, or the root folder if you are opening the project in the Godot editor. ".env" is already in .gitignore, please do not change this. 
 ## Temperature sensor
 
 <picture>
