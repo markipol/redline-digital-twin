@@ -13,7 +13,9 @@ This folder contains the main Godot Engine project for the Digital Innovation Hu
 
 ## Opening the project in Godot
 
-To get started simply open this folder's project.godot in Godot 4.4, the addons are already included in the project
+First, place your .env file (format: text file containing "READ_KEY = (key)") in the folder above the godot project (in the repo case, the root folder, the .env is already in .gitignore). 
+This will allow you to communicate with the server.
+Then simply open the project.godot in Godot 4.4
 
 ## Development Notes
 
