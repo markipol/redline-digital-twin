@@ -51,7 +51,7 @@ Allow the normal user to access the TEMPer device without using `sudo`.
 sudo nano /etc/udev/rules.d/99-temper.rules
 ```
 
-Paste the following lines (to cover both cases of if the sensor is a root device or a child device, former on Pi 2, latter on Pi 3):
+Paste the following lines (to cover both cases of if the sensor is a root device or a child device, former on Pi 3, latter on Pi 2):
 
 ```bash
 SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3553", ATTRS{idProduct}=="a001", MODE="0666", GROUP="plugdev"
