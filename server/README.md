@@ -648,25 +648,3 @@ Get the latest day's readings for a specific room (12am-12am), also returns `lat
   * `404 Not Found` - Room does not exist
   * `400 Bad Request` - timezone does not exist, date format wrong or in the future
   * `500 Internal Server Error`
-
-
-# Contributing
-
-We welcome contributions to improve the Flask API and its deployment setup. Please follow the workflow and guidelines below to ensure smooth collaboration.
-
-## Workflow
-
-1. Fork the repository on GitHub and clone it locally.
-2. Create a new feature branch for your changes.
-3. Make your changes, ensuring the app runs without errors and all endpoints behave as expected.
-4. Run tests to verify functionality (manual or automated if available).
-5. Open a pull request with a clear description of your changes.
-
-## Development Guidelines
-
-- Follow standard Python and Flask best practices.
-- Keep code modular and reusable (use Blueprints or helper modules if needed).
-- Add comments and docstrings to explain new logic or complex sections.
-- If modifying the database schema, also update `schema.sql`.
-- If adding new endpoints, include them in the **API Endpoints** section of the README.
-
