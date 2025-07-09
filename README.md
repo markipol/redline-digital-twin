@@ -1,5 +1,5 @@
 # Redline Temperature Map
-Redline is an open source system which can help you monitor and display temperatures of rooms in a multi-floor building in a 3D environment. The project is currently in a working prototype state. The client uses the Godot game engine, and queries a Flask server behind Gunicorn and Nginx (and, in the included server install instructions, Cloudflare Tunnel, although that is optional) for temperatures of rooms. The system shows temperature data for a room on a graph when that rooms info point is clicked. The system can report real data from a Raspberry Pi temperature sensor. Future data points could be added, however, for now, temperature is the only supported data point
+Redline is an open source system which can help you monitor and display temperatures of rooms in a multi-floor building in a 3D environment. The project is currently in a working prototype state. The client uses the Godot game engine, and queries a Flask server behind Gunicorn and Nginx (and, in the included server [installation instructions](server/README.md), Cloudflare Tunnel, although that is optional) for temperatures of rooms. The system shows temperature data for a room on a graph when that rooms info point is clicked. The system can report real data from a Raspberry Pi temperature sensor. Future data points could be added, however, for now, temperature is the only supported data point. Here is a video demo of the system: https://www.youtube.com/live/GGxRg7EWbFo. There is currently a Windows and Linux client.
 ## Development process
 The models, Godot client, server, and temperature sensor code were developed entirely solo by me (markipol) over 12 weeks, as my Capstone Project for the La Trobe University Bachelor of Cybersecurity. 
 ## Models
@@ -53,11 +53,13 @@ Description of each mesh:
 - plan_col: simply the bottom surface of the floor, floor plan in the Jenny Graves Building case. Doesn't need seperate collision mesh because it is a simple plane, auto imports StaticBody3D and CollisionShape3D, imports visible mesh.
 
 - points: the parent object of "info points" which are 0.8m cubes the user clicks to show the graph.
-  - info points themselves: Must be named "<Room code> - <Room title>". Godot code splits based on spaces, as long as it has a room code then a space, it will work. The title is not implemented anywhere in and of itself.
+  - info points themselves: Must be named "RoomCode - RoomTitle". Godot code splits based on spaces, as long as it has a room code then a space, it will work. The title is not implemented anywhere in and of itself.
 
   Note: All these nodes must be named this way, the code works on the model having these names.
 ## Server
-The server is a Python Flask server. The installation instructions use Nginx and Gunicorn, which is a production-level way to do it, however for testing or development purposes you could use ```flask.run()``` (only one connection at a time, not a fully fledged http/s server, etc). The instructions also mention using Cloudflare Tunnel, however this was only used because La Trobe was blocking the untrusted Azure IP. But in fact, this is a good general security hygiene step as you never expose your real server IP, making it more DDoS resistant. Also, any random network with however many VPNs or filters will only ever connect to a trusted Cloudflare IP, making your connection less likely to be blocked. 
+The server is a Python Flask server. The [installation instructions](server/README.md) use Nginx and Gunicorn, which is a production-level way to do it, however for testing or development purposes you could use ```flask.run()``` (only one connection at a time, not a fully fledged http/s server, etc). The instructions also mention using Cloudflare Tunnel, however this was only used because La Trobe was blocking the untrusted Azure IP. But in fact, this is a good general security hygiene step as you never expose your real server IP, making it more DDoS resistant. Also, any random network with however many VPNs or filters will only ever connect to a trusted Cloudflare IP, making your connection less likely to be blocked. 
+## Client
+Please create a file called ".env" with your read key, as added to the server, and put it in the format "READ_KEY = (key)" in the same folder as the EXE, or the root folder if you are opening the project in the Godot editor. ".env" is already in .gitignore, please do not change this. 
 ## Temperature sensor
 
 <picture>

@@ -1,5 +1,13 @@
 # 🌡️ TEMPerGold USB Thermometer Setup for Pi
 
+<picture>
+  <img src="/images/TEMPerGold.jpg" alt="A TEMPerGold attached to a USB Extension cable" width="600">
+</picture>
+
+Please note: if running on a Raspberry Pi, please use a USB Extender (as in the image) or USB Hub to make the heat of the Pi not artificially raise the temperature of the sensor. 
+
+Tested on Pi 2 and Pi 3 (note both cases below in USB permissions).
+
 ## 1. Create Project Folder
 
 ```bash
@@ -43,7 +51,7 @@ Allow the normal user to access the TEMPer device without using `sudo`.
 sudo nano /etc/udev/rules.d/99-temper.rules
 ```
 
-Paste the following lines (to cover both cases - root device and child device):
+Paste the following lines (to cover both cases of if the sensor is a root device or a child device, former on Pi 3, latter on Pi 2):
 
 ```bash
 SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3553", ATTRS{idProduct}=="a001", MODE="0666", GROUP="plugdev"
@@ -108,6 +116,8 @@ python3 read_temp.py
 
 ## 8. Automate Upload with Cron
 
+(note: please change the server URL to your URL in upload_temp.py)
+
 ### Edit Crontab
 
 ```bash
@@ -121,5 +131,4 @@ crontab -e
 ```
 
 ---
-
-That’s it! Your TEMPer USB thermometer should now read and upload temperature data every hour automatically.
+Done! The Pi should now read and upload temperature to the server every hour, on the hour (i.e. runs at 5:00pm, 6:00pm, etc).
