@@ -12,10 +12,11 @@ godot_project/Redline.console.exe
 godot_project/Redline.exe
 Redline.x86_64
 Redline.x86_64
+godot_exes/*
 # Ignore any .env file anywhere
 **/.env
 
-# Ignore EXEs, they waste space. Put them in releases. Any pck thats still floating around is deleted as well
+# Ignore EXEs, they waste space. Put them in releases. Any pck thats still floating around is ignored as well
 **/*.exe
 **/*.pck
 **/*.x86_64
